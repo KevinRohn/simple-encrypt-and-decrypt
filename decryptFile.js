@@ -1,13 +1,38 @@
 var fs = require('fs');
 var crypto = require('crypto');
 
-var key = 'secretKey123#';
-var cipher = crypto.Decipher('aes-256-cbc', key);
-var input = fs.createReadStream('test.json.enc');
-var output = fs.createWriteStream('testdecrypted.json');
+// start at item 2 - 0 = node and 1 = path
+var consoleArgs = process.argv.slice(2);
 
-input.pipe(cipher).pipe(output);
+// arguments
+var encryptedInputFile;
+var decryptedOutputFile;
+var secretKey = '';
 
-output.on('finish', function() {
-  console.log('Encrypted file written to disk!');
-});
+// encrypted input file
+if (consoleArgs[0]) {
+  encryptedInputFile = consoleArgs[0];
+}
+// decrypted output file
+if (consoleArgs[1]) {
+  decryptedOutputFile = consoleArgs[1];
+}
+// key 
+if (consoleArgs[2]) {
+  secretKey = consoleArgs[2];
+}
+
+function decrypt(key) {
+  let cipher = crypto.Decipher('aes-256-cbc', key);
+  var inputReadFile = fs.createReadStream(encryptedInputFile);
+  var outputWriteFile = fs.createWriteStream(decryptedOutputFile);
+  
+  inputReadFile.pipe(cipher).pipe(outputWriteFile)
+
+  outputWriteFile.on('finish', function () {
+    console.log('Decrypted file written to disk!');
+    return true;
+  });  
+}
+
+decrypt(secretKey);
