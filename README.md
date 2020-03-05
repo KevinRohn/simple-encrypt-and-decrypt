@@ -36,3 +36,7 @@ The secret key has to match the following rules:
 - Must contain at least a number
 
 Encryption is done with AES256 and can be changed in the source code.
+
+# ToDo
+- [] Add Salt
+- [] vector with random bytes
