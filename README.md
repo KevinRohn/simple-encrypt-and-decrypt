@@ -38,5 +38,6 @@ The secret key has to match the following rules:
 Encryption is done with AES256 and can be changed in the source code.
 
 # ToDo
-- [] Add Salt
-- [] vector with random bytes
+- [ ] Add Salt
+- [ ] vector with random bytes
+- [ ] Use secret with env variable instead with passing by argument (Risky - Clean your history after usage)
