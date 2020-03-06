@@ -26,7 +26,7 @@ decrypt file:
 
 ## Info
 The secret key has to match the following rules:
-- 32 Characters long (256 bytes)
+- 32 Characters long (256 bit)
 - Must contain at least a Special char from this character set: 
 ```
 <>@!#$%^&*()_+[]{}?:;|'\"\\,./~`-=
